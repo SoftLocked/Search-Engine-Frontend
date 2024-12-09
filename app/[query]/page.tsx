@@ -11,6 +11,7 @@ const SearchStr = () => {
     const { query } = useParams();
     const router = useRouter();
     const [data, setData] = useState([[]]);
+    const [timeTaken, setTimeTaken] = useState(0);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -18,8 +19,8 @@ const SearchStr = () => {
             console.log(response);
             const result = await response.json();
             setData(result['results']);
+            setTimeTaken(result['timeTaken'])
         }
-
         fetchData();
     }, []);
 
@@ -38,7 +39,12 @@ const SearchStr = () => {
                 </div>
                 <SearchBar default={query}/>
             </div>
-            <div className="ml-10 m-5">
+            <Typography variant="p" component="p" className="ml-20 pl-10" style={{'color': '#888888'}}>
+                {data.reduce((total, row) => total + row.length, 0)} Results Found in {timeTaken} Milliseconds.
+            </Typography>
+            
+            <div className="ml-20 pl-10 m-5">
+            
                 <Results data={data}/>
             </div>
         </div>

@@ -10,7 +10,7 @@ export default function Result(props) {
     const url = props.url;
 
     return (
-        <Card sx={{ maxWidth: 1000, marginBottom: 2, backgroundColor: "#e3e3e3 "}}>
+        <Card sx={{ maxWidth: 930, marginBottom: 2, backgroundColor: "#e3e3e3 "}}>
             <CardActionArea onClick={
                 () => {
                 window.open(url, '_blank')
